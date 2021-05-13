@@ -480,6 +480,7 @@
             <div class="contact-wrapper wow fadeInUp" data-wow-delay=".2s">
               <form
                 action="#"
+                name="contact-form"
                 method="POST"
                 id="contact-form"
                 class="contact-form"
@@ -542,7 +543,7 @@
                   </div>
                   <div class="col-md-12">
                     <div class="submit-btn">
-                      <button class="main-btn btn-hover" type="submit">
+                      <button class="main-btn btn-hover" id="submitForm" >
                         Submit Message
                       </button>
                     </div>
@@ -628,7 +629,7 @@
     <a href="#" class="scroll-top btn-hover">
       <i class="fa fa-chevron-up"></i>
     </a>
-
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="assets/js/bootstrap.5.0.0.alpha-2-min.js"></script>
     <script src="assets/js/count-up.min.js"></script>
     <script src="assets/js/tiny-slider.js"></script>
@@ -643,5 +644,27 @@
 
     <!-- Initialize Firebase -->
     <script src="/__/firebase/init.js"></script>
+    <script>
+      // var $form = 
+      //     url = ''
+
+      // $('#submitForm').on('click', function(e) {
+      //   e.preventDefault();
+      //   fetch(url, { method: 'GET', body: new FormData($form)})
+      //       .then(alert("Thanks For Contacting, We'll get back to you soon!"))
+      // })
+      const scriptURL = 'https://script.google.com/macros/s/AKfycbzYX0fVwvkut-PIbJNu5GIX_cZ-POmd9AHr2f2dM_wVnzXwnHTmYOF5BwodbnDNiFXj/exec'
+      const form = document.forms['contact-form']
+
+      form.addEventListener('submit', e => {
+        e.preventDefault()
+        fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+          .then(response => alert("Thank you for contacting us, we'll revert back to you soon!"))
+          .catch(error => console.error('Error!', error.message))
+
+        form.reset()
+      })
+
+    </script>
   </body>
 </html>
